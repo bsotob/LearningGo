@@ -4,7 +4,7 @@ import "fmt"
 
 func merge(left, right []int) []int {
 	size, i, j := len(left)+len(right), 0, 0
-	result := make([]int, 0, size)
+	result := make([]int, size, size)
 	for k := 0; k < size; k++ {
 		if i > len(left)-1 && j <= len(right)-1 {
 			result[k] = right[j]
@@ -12,7 +12,7 @@ func merge(left, right []int) []int {
 		} else if j > len(right)-1 && i <= len(left)-1 {
 			result[k] = left[i]
 			i++
-		} else if left[i] < right[i] {
+		} else if left[i] < right[j] {
 			result[k] = left[i]
 			i++
 		} else {
