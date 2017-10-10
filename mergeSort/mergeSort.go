@@ -3,20 +3,21 @@ package main
 import "fmt"
 
 func merge(left, right []int) []int {
-	result := make([]int, 0, len(left)+len(right))
-	for len(left) > 0 || len(right) > 0 {
-		if len(left) == 0 {
-			return append(result, right...)
-		}
-		if len(right) == 0 {
-			return append(result, left...)
-		}
-		if left[0] <= right[0] {
-			result = append(result, left[0])
-			left = left[1:]
+	size, i, j := len(left)+len(right), 0, 0
+	result := make([]int, 0, size)
+	for k := 0; k < size; k++ {
+		if i > len(left)-1 && j <= len(right)-1 {
+			result[k] = right[j]
+			j++
+		} else if j > len(right)-1 && i <= len(left)-1 {
+			result[k] = left[i]
+			i++
+		} else if left[i] < right[i] {
+			result[k] = left[i]
+			i++
 		} else {
-			result = append(result, right[0])
-			right = right[1:]
+			result[k] = right[j]
+			j++
 		}
 	}
 	return result
@@ -26,10 +27,8 @@ func mergeSort(v []int) []int {
 	if len(v) < 2 {
 		return v
 	}
-	median := len(v) / 2
-	left := mergeSort(v[:median])
-	right := mergeSort(v[median:])
-	return merge(left, right)
+	mid := len(v) / 2
+	return merge(mergeSort(v[:mid]), mergeSort(v[mid:]))
 }
 
 func main() {
