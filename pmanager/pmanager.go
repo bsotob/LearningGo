@@ -8,7 +8,7 @@ import (
 	"strings"
 )
 
-//Process collects the information of the searching process
+
 type Process struct {
 	User    string
 	Pid     int64
