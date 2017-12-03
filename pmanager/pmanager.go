@@ -29,7 +29,7 @@ func ReviveProcess(path string) {
 	}
 }
 
-//isAlive returns true if the name process was specified to be alive
+//isAlive returns true name is in the paths slice
 func isAlive(paths []string, name string) bool {
 	for _, path := range paths {
 		if strings.Contains(path, name) {
@@ -40,7 +40,7 @@ func isAlive(paths []string, name string) bool {
 }
 
 //ParseProcessInfo parses the information catched from the ps command
-//and fills the Process struct to be return
+//and fills the Process struct
 func ParseProcessInfo(info string, paths []string) Process {
 	//Remember ps aux | awk '{print $1, $2, $3, $4, $11}'
 	//so the $1 is the user, $2 pid, and soo on...
@@ -75,8 +75,8 @@ func ParseProcessInfo(info string, paths []string) Process {
 //RunningProcess returns all the running process that were given by
 //the ps command, and returns a slice with all the active Process.
 //the paths parameters is a slice of all the process that must be
-//running, if the Process was found the KeepAlive atribute will be
-//true, otherwise will be set to false
+//running, if the Process was found the KeepAlive atribute will be set
+//to true.
 func RunningProcess(paths []string) []Process {
 	command := "ps aux | awk '{print $1, $2, $3, $4, $11, $12}'"
 	output, err := exec.Command("bash", "-c", command).Output()
