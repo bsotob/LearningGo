@@ -1,4 +1,4 @@
-//awful exemple should recode this with an real exemple
+//awful exemple should recode this with a real exemple
 package main
 
 import "fmt"
