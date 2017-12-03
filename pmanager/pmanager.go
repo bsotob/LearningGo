@@ -8,7 +8,6 @@ import (
 	"strings"
 )
 
-
 type Process struct {
 	User    string
 	Pid     int64
