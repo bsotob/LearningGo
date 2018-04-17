@@ -18,7 +18,7 @@ func binarySearch(v []int, x, left, right int) int {
 
 func main() {
 	v := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
-	x := -2
+	x := 3
 	if binarySearch(v, x, 0, len(v)-1) != -1 {
 		fmt.Println("EXIST")
 	}
